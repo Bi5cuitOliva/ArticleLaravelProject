@@ -15,6 +15,23 @@
                     <x-nav-link :href=" Auth::user()->usertype =='admin' ? route('admin.dashboard') : route('dashboard')" :active=" Auth::user()->usertype =='admin' ? request()->routeIs('admin.dashboard') :request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    {{--admin links--}}
+                    @if (Auth::user()->usertype == 'admin')
+                    <x-nav-link href="admin/articles" :active="request()->routeIs('admin.article')">
+                        {{ __('Articles') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="admin/category" :active="request()->routeIs('admin.category')">
+                        {{ __('Category') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="admin/users" :active="request()->routeIs('admin.user')">
+                        {{ __('Users') }}
+                    </x-nav-link>
+                    @endif
+
+
                 </div>
             </div>
 
