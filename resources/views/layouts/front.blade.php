@@ -32,7 +32,7 @@
         @yield('script')
 
         {{--include footer--}}
-        @include('footer')
+        @include('layouts.footer')
 
 
 
