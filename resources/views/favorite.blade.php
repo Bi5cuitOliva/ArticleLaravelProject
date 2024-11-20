@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="text-2xl font-bold mb-4">{{ __('My Favorite Articles') }}</h3>
-
+{{--
                     @if(count($favorites) == 0)
                         <p>{{ __('No favorite articles yet.') }}</p>
                     @else
@@ -27,7 +27,7 @@
                                 </div>
                             @endforeach
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
         </div>
