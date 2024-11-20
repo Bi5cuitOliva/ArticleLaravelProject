@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\FavoriteController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,8 +25,8 @@ require __DIR__.'/auth.php';
 //user routes
 Route::middleware(['auth', 'userMiddleware'])->group(function(){
 
-
     Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
+    Route::get('favorite',[FavoriteController::class,'index'])->name('user.favorite');
 });
 
 //admin routes
