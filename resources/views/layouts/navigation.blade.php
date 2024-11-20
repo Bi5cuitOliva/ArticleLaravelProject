@@ -70,6 +70,10 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="url('/')">
+                            {{ __('Home') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -102,6 +106,37 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+
+                    {{--admin links--}}
+                    @if (Auth::user()->usertype == 'admin')
+                    <x-responsive-nav-link href="admin/articles" :active="request()->routeIs('admin.article')">
+                        {{ __('Articles') }}
+                    </x-nav-link>
+
+                    <x-responsive-nav-link href="admin/category" :active="request()->routeIs('admin.category')">
+                        {{ __('Category') }}
+                    </x-nav-link>
+
+                    <x-responsive-nav-link href="admin/users" :active="request()->routeIs('admin.user')">
+                        {{ __('Users') }}
+                    </x-nav-link>
+                    @endif
+
+                          {{--user links--}}
+                          @if (Auth::user()->usertype == 'user')
+                          <x-responsive-nav-link href="order" :active="request()->routeIs('user.order')">
+                              {{ __('Order') }}
+                          </x-responsive-nav-link>
+
+                          <x-responsive-nav-link href="favorite" :active="request()->routeIs('user.favorite')">
+                              {{ __('Favorite') }}
+                          </x-responsive-nav-link>
+
+                          <x-responsive-nav-link href="profile" :active="request()->routeIs('profile.edit')">
+                              {{ __('My Profile') }}
+                          </x-responsive-nav-link>
+                          @endif
         </div>
 
         <!-- Responsive Settings Options -->
@@ -114,6 +149,10 @@
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="url('/')">
+                    {{ __('Home') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
