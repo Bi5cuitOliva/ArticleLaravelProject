@@ -23,11 +23,16 @@
     </head>
     <body class="font-sans text-gray-900 antialiased">
 
+        {{-- include nav --}}
+        @include('layouts.nav')
         {{--content--}}
         @yield('content')
 
         {{--script--}}
         @yield('script')
+
+        {{--include footer--}}
+        @include('footer')
 
 
 

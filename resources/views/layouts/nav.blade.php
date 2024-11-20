@@ -82,28 +82,26 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <<div class="mt-3 space-y-1">
+                @auth
+                <x-responsive-nav-link  :href=" Auth::user()->usertype =='admin' ? url('/admin./category') : route('dashboard')" :active=" Auth::user()->usertype =='admin' ? request()->routeIs('admin.dashboard') :request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link >
+                @else
+
+                <x-responsive-nav-link  :href="url('/login')" :active="request()->routeIs('login')">
+                    {{ __('Login') }}
+                </x-responsive-nav-link >
+
+                @if(Route::has('register'))
+                <x-responsive-nav-link  :href="url('/register')" :active="request()->routeIs('register')">
+                    {{ __('Register') }}
+                </x-responsive-nav-link >
+                @endif
+                @endauth
 
 
-                
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
-
-                <x-responsive-nav-link :href="url('/')">
-                    {{ __('Home') }}
-                </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
         </div>
     </div>
+
+</div>
 </nav>
