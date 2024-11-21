@@ -22,10 +22,6 @@
                         {{ __('Manage Articles') }}
                     </x-nav-link>
 
-                    <x-nav-link href="admin/category" :active="request()->routeIs('admin.category')">
-                        {{ __('Category') }}
-                    </x-nav-link>
-
                     <x-nav-link href="admin/users" :active="request()->routeIs('admin.user')">
                         {{ __('Users') }}
                     </x-nav-link>
@@ -113,11 +109,7 @@
                     <x-responsive-nav-link href="admin/articles" :active="request()->routeIs('admin.article')">
                         {{ __('Articles') }}
                     </x-nav-link>
-
-                    <x-responsive-nav-link href="admin/category" :active="request()->routeIs('admin.category')">
-                        {{ __('Category') }}
-                    </x-nav-link>
-
+                    
                     <x-responsive-nav-link href="admin/users" :active="request()->routeIs('admin.user')">
                         {{ __('Users') }}
                     </x-nav-link>

@@ -30,7 +30,7 @@
                             <p>Current Image: <a href="{{ asset('storage/' . $article->image_path) }}" target="_blank">View</a></p>
                         @endif
                     </div>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg w-24 text-center transition-all transform hover:scale-105">Update</button>
                 </form>
             </div>
         </div>

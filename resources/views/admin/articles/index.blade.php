@@ -25,12 +25,20 @@
                             <td class="border px-4 py-2">{{ $loop->iteration }}</td>
                             <td class="border px-4 py-2">{{ $article->title }}</td>
                             <td class="border px-4 py-2">{{ $article->author }}</td>
-                            <td class="border px-4 py-2">
-                                <a href="{{ route('admin.articles.edit', $article) }}" class="text-blue-500">Edit</a> |
-                                <form action="{{ route('admin.articles.delete', $article->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this article?')">
+                            <td class="border px-4 py-2 flex items-center space-x-2">
+                                <a href="{{ route('admin.articles.edit', $article) }}"
+                                    class="bg-blue-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-full shadow-lg w-24 text-center transition-all transform hover:scale-105">
+                                    Edit
+                                </a>
+
+                                <form action="{{ route('admin.articles.delete', $article->id) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this article?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+                                    <button type="submit"
+                                        class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full shadow-lg w-24 text-center transition-all transform hover:scale-105">
+                                        Delete
+                                    </button>
                                 </form>
                             </td>
                         </tr>
