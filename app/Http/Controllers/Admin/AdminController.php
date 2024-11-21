@@ -101,10 +101,81 @@ class AdminController extends Controller
         return redirect()->route('admin.articles')->with('success', 'Article deleted successfully!');
     }
 
+
+
+    //Users Functions
     // List users in the database
     public function listUsers()
     {
         $users = User::all(); // Fetch all users (you can also paginate or filter as needed)
         return view('admin.users.index', compact('users'));
+    }
+
+    // Show the form to create a new user
+    public function createUser()
+    {
+        return view('admin.users.create');
+    }
+
+    // Store a new user (POST)
+    public function storeUser(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed', // Password confirmation
+            'usertype' => 'required|in:user,admin', // Only 'user' or 'admin' allowed
+        ]);
+
+        // Create the user
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password), // Encrypt the password
+            'usertype' => $request->usertype,
+        ]);
+
+        return redirect()->route('admin.users')->with('success', 'User created successfully!');
+    }
+
+    // Show the form to edit a user
+    public function editUser(User $user)
+    {
+        return view('admin.users.edit', compact('user'));
+    }
+
+    // Update user details
+    public function updateUser(Request $request, User $user)
+    {
+        // Validate the request
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'usertype' => 'required|in:user,admin',
+        ]);
+
+        // Update the user details
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'usertype' => $request->usertype,
+        ]);
+
+        return redirect()->route('admin.users')->with('success', 'User updated successfully!');
+    }
+
+    // Delete a user
+    public function deleteUser(User $user)
+    {
+        // Ensure the admin doesn't delete themselves
+        if ($user->id === auth()->id()) {
+            return redirect()->route('admin.users')->with('error', 'You cannot delete your own account.');
+        }
+
+        // Delete the user
+        $user->delete();
+
+        return redirect()->route('admin.users')->with('success', 'User deleted successfully!');
     }
 }
