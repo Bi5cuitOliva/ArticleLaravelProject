@@ -15,6 +15,10 @@ Route::get('/contact-us', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/articles, function () {
+    return view('articles');
+})->name('articles');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
