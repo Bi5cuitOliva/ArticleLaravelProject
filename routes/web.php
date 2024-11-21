@@ -40,4 +40,11 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function(){
 
 
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/articles', [AdminController::class, 'articles'])->name('admin.articles');
+    Route::get('/articles/create', [AdminController::class, 'createArticle'])->name('admin.articles.create');
+    Route::post('/articles', [AdminController::class, 'storeArticle'])->name('admin.articles.store');
+    Route::get('/articles/{article}/edit', [AdminController::class, 'editArticle'])->name('admin.articles.edit');
+    Route::put('/articles/{article}', [AdminController::class, 'updateArticle'])->name('admin.articles.update');
+    Route::delete('/articles/{article}', [AdminController::class, 'deleteArticle'])->name('admin.articles.delete');
 });
