@@ -48,6 +48,11 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function() {
     Route::patch('/admin/articles/{article}', [AdminController::class, 'updateArticle'])->name('admin.articles.update'); // Update an article
     Route::delete('/admin/articles/{article}', [AdminController::class, 'deleteArticle'])->name('admin.articles.delete'); // Delete an article
 
-     // User Management
-     Route::get('/admin/admin/users', [AdminController::class, 'listUsers'])->name('admin.users'); // View all users
+    // User Management
+    Route::get('/admin/admin/users', [AdminController::class, 'listUsers'])->name('admin.users'); // View all users
+    Route::get('/admin/users/create', [AdminController::class, 'createUser'])->name('admin.users.create'); // Form to create a user
+    Route::post('/admin/users', [AdminController::class, 'storeUser'])->name('admin.users.store'); // Save a new user
+    Route::get('/admin/users/{user}/edit', [AdminController::class, 'editUser'])->name('admin.users.edit'); // Form to edit a user
+    Route::patch('/admin/users/{user}', [AdminController::class, 'updateUser'])->name('admin.users.update'); // Update a user
+    Route::delete('/admin/users/{user}', [AdminController::class, 'deleteUser'])->name('admin.users.delete'); // Delete a user
 });
