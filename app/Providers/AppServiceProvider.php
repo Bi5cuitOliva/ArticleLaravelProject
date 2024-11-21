@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Auth\Events\Login;
+use App\Listeners\SendLoginNotification;
+use Illuminate\Support\Facades\Event;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Register the listener for the Login event
+        Event::listen(
+            Login::class, // The event we are listening to
+            [SendLoginNotification::class, 'handle'] // The listener and its handler method
+        );
     }
 }
