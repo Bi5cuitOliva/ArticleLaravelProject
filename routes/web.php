@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\FavoriteController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,9 +16,10 @@ Route::get('/contact-us', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/articles, function () {
-    return view('articles');
-})->name('articles');
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
+Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
+
+
 
 
 Route::get('/dashboard', function () {
@@ -44,11 +46,5 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function(){
 
 
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/articles', [AdminController::class, 'articles'])->name('admin.articles');
-    Route::get('/articles/create', [AdminController::class, 'createArticle'])->name('admin.articles.create');
-    Route::post('/articles', [AdminController::class, 'storeArticle'])->name('admin.articles.store');
-    Route::get('/articles/{article}/edit', [AdminController::class, 'editArticle'])->name('admin.articles.edit');
-    Route::put('/articles/{article}', [AdminController::class, 'updateArticle'])->name('admin.articles.update');
-    Route::delete('/articles/{article}', [AdminController::class, 'deleteArticle'])->name('admin.articles.delete');
+
 });
