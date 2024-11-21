@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use Storage;
 use App\Models\Article;
+use App\Models\User;  // Add this import to handle the User model
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -99,5 +99,12 @@ class AdminController extends Controller
 
         // Redirect back to the article list with success message
         return redirect()->route('admin.articles')->with('success', 'Article deleted successfully!');
+    }
+
+    // List users in the database
+    public function listUsers()
+    {
+        $users = User::all(); // Fetch all users (you can also paginate or filter as needed)
+        return view('admin.users.index', compact('users'));
     }
 }
