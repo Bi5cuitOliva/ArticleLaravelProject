@@ -14,13 +14,13 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         @foreach($articles as $article)
         <div class="bg-white p-4 rounded shadow hover:shadow-lg transform hover:-translate-y-1 transition">
-            <a href="{{ $article->url }}">
+            <a href="{{ route('articles.show', $article->slug) }}">
                 <img src="{{ $article->image_path ? asset('storage/' . $article->image_path) : asset('images/placeholder.jpg') }}"
                      alt="{{ $article->title }}"
                      class="w-full h-48 object-cover rounded mb-4">
             </a>
             <h2 class="text-lg font-semibold">
-                <a href="{{ $article->url }}" class="hover:text-blue-500">
+                <a href="{{ route('articles.show', $article->slug) }}" class="hover:text-blue-500">
                     {{ $article->title }}
                 </a>
             </h2>
@@ -32,7 +32,7 @@
 
     <!-- Pagination -->
     <div class="mt-6">
-        {{ $articles->links() }}
+        {{ $articles->links() }} <!-- This will render pagination links -->
     </div>
 </div>
 @endsection

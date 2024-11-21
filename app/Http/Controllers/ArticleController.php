@@ -12,7 +12,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate(9); // Paginate articles (9 per page)
+        // Paginate articles (9 per page)
+        $articles = Article::paginate(9);
+
+        // Return articles view with paginated articles
         return view('articles', compact('articles'));
     }
 
@@ -21,7 +24,10 @@ class ArticleController extends Controller
      */
     public function show($slug)
     {
+        // Find article by slug, if not found show a 404 error
         $article = Article::where('slug', $slug)->firstOrFail();
+
+        // Return the article detail view
         return view('article-detail', compact('article'));
     }
 }

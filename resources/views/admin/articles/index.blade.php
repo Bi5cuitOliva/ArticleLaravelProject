@@ -27,10 +27,10 @@
                             <td class="border px-4 py-2">{{ $article->author }}</td>
                             <td class="border px-4 py-2">
                                 <a href="{{ route('admin.articles.edit', $article) }}" class="text-blue-500">Edit</a> |
-                                <form action="{{ route('admin.articles.delete', $article) }}" method="POST" class="inline">
+                                <form action="{{ route('admin.articles.delete', $article->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this article?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-500">Delete</button>
+                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
                                 </form>
                             </td>
                         </tr>

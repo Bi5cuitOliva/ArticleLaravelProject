@@ -11,16 +11,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-
 Route::get('/contact-us', function () {
     return view('contact');
 })->name('contact');
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
 Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
-
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,17 +30,21 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-//user routes
-Route::middleware(['auth', 'userMiddleware'])->group(function(){
-
+// User Routes
+Route::middleware(['auth', 'userMiddleware'])->group(function() {
     Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
-    Route::get('favorite',[FavoriteController::class,'index'])->name('user.favorite');
+    Route::get('favorite', [FavoriteController::class, 'index'])->name('user.favorite');
 });
 
-//admin routes
-Route::middleware(['auth', 'adminMiddleware'])->group(function(){
-
-
+// Admin Routes
+Route::middleware(['auth', 'adminMiddleware'])->group(function() {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
+    // Article Management
+    Route::get('/admin/admin/articles', [AdminController::class, 'articles'])->name('admin.articles'); // View all articles
+    Route::get('/admin/articles/create', [AdminController::class, 'createArticle'])->name('admin.articles.create'); // Form to create an article
+    Route::post('/admin/articles', [AdminController::class, 'storeArticle'])->name('admin.articles.store'); // Save a new article
+    Route::get('/admin/articles/{article}/edit', [AdminController::class, 'editArticle'])->name('admin.articles.edit'); // Form to edit an article
+    Route::patch('/admin/articles/{article}', [AdminController::class, 'updateArticle'])->name('admin.articles.update'); // Update an article
+    Route::delete('/admin/articles/{article}', [AdminController::class, 'deleteArticle'])->name('admin.articles.delete'); // Delete an article
 });

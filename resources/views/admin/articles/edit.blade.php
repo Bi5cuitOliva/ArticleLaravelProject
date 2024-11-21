@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
                 <form action="{{ route('admin.articles.update', $article) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+                    @method('PATCH')
                     <div class="mb-4">
                         <label for="title" class="block text-gray-700">Title:</label>
                         <input type="text" id="title" name="title" value="{{ $article->title }}" class="w-full border-gray-300 rounded-md" required>

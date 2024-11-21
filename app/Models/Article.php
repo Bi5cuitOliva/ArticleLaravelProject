@@ -15,6 +15,7 @@ class Article extends Model
         'author',
         'content',
         'image_path',
+        'slug', 
     ];
 
     // Generate slug from title
@@ -23,6 +24,7 @@ class Article extends Model
         parent::boot();
 
         static::creating(function ($article) {
+            // Automatically generate slug when creating an article
             $article->slug = Str::slug($article->title);
         });
     }
@@ -30,6 +32,7 @@ class Article extends Model
     // URL accessor for article detail page
     public function getUrlAttribute()
     {
+        // Define a custom URL for the article
         return route('articles.show', $this->slug);
     }
 }
