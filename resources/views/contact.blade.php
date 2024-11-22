@@ -15,9 +15,10 @@
 @section('style')
 <style>
     .contact-header {
-        background-image: url('{{ asset('images/contact-banner.jpg') }}');
+        background-image: url('{{ asset('images/solo-leveling-5120x2880-19518.png') }}');
         background-size: cover;
         background-position: center;
+        position: relative;
     }
 </style>
 @endsection
@@ -75,7 +76,7 @@
             <p class="mb-4 text-gray-700">Feel free to reach out to us using the details below:</p>
             <div class="mb-4">
                 <h3 class="text-lg font-medium text-gray-800">Address</h3>
-                <p class="text-gray-600">123 Main Street, City, Country</p>
+                <p class="text-gray-600">WestPark,Nairobi,Kenya</p>
             </div>
             <div class="mb-4">
                 <h3 class="text-lg font-medium text-gray-800">Phone</h3>

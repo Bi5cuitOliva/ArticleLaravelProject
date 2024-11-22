@@ -36,7 +36,7 @@ class AdminController extends Controller
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
             'content' => 'required',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:5120', // 5MB max image size
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:9120', // 5MB max image size
         ]);
 
         // Handle image upload, if any
@@ -68,7 +68,7 @@ class AdminController extends Controller
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
             'content' => 'required',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:5120', // 5MB max image size
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:9120', // 5MB max image size
         ]);
 
         // Handle the image upload if a new image is provided, otherwise retain the current image

@@ -25,7 +25,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('images/solo-leveling-5120x2880-19518.png') }}');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('images/world-book-day-celebration.jpg') }}');
     position: absolute; /* Position it absolutely within the hero-content */
     top: 0;
     left: 0;
@@ -79,7 +79,10 @@ button:hover {
         <h1>Welcome to Our Article Website</h1>
         <p>Discover a wide range of articles on various topics. From technology to lifestyle, we've got it all covered.</p>
         <p>Explore our curated content, learn something new, and engage with our community. Your journey to knowledge starts here!</p>
-        <button>Start Exploring</button>
+        <a href="{{ route('articles') }}">
+            <button>Start Exploring</button>
+        </a>
+
     </div>
 </div>
 
