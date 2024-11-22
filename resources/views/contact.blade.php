@@ -15,7 +15,7 @@
 @section('style')
 <style>
     .contact-header {
-        background-image: url('{{ asset('images/solo-leveling-5120x2880-19518.png') }}');
+        background-image: url('{{ asset('images/technology-shopping-people-concept-modern-cute-hipster-redhead-girl-wearing-white-headphones-hol.jpg') }}');
         background-size: cover;
         background-position: center;
         position: relative;
