@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\User\UserController;
@@ -11,9 +12,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/contact-us', function () {
-    return view('contact');
-})->name('contact');
+
+// Contact Us Routes
+Route::get('/contact-us', [ContactController::class, 'showForm'])->name('contact.form'); // Show contact form
+Route::post('/contact-us', [ContactController::class, 'submitForm'])->name('contact.submit'); // Handle form submission
+
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
 Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');

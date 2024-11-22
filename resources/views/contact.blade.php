@@ -32,8 +32,25 @@
         <!-- Contact Form -->
         <div class="bg-white p-6 shadow-md rounded-lg">
             <h2 class="text-2xl font-semibold mb-4">Send Us a Message</h2>
-            {{-- <form action="{{ route('contact.submit') }}" method="POST"> --}}
+            <!-- Form to submit contact details -->
+            <form action="{{ route('contact.submit') }}" method="POST">
                 @csrf
+
+                <!-- Display Success/Failure Message -->
+                @if(session('success'))
+                    <div class="text-green-600 mb-4">{{ session('success') }}</div>
+                @elseif(session('error'))
+                    <div class="text-red-600 mb-4">{{ session('error') }}</div>
+                @elseif($errors->any())
+                    <div class="text-red-600 mb-4">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 font-medium">Your Name</label>
                     <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200" placeholder="Enter your name" required>
@@ -62,28 +79,11 @@
             </div>
             <div class="mb-4">
                 <h3 class="text-lg font-medium text-gray-800">Phone</h3>
-                <p class="text-gray-600">+1 234 567 890</p>
+                <p class="text-gray-600">+254 978 20 28</p>
             </div>
             <div class="mb-4">
                 <h3 class="text-lg font-medium text-gray-800">Email</h3>
-                <p class="text-gray-600">contact@stokeleyinc.com</p>
-            </div>
-            <div>
-                <h3 class="text-lg font-medium text-gray-800">Follow Us</h3>
-                <div class="flex space-x-4 mt-2">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-400">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="text-indigo-600 hover:text-indigo-400">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="text-indigo-600 hover:text-indigo-400">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="text-indigo-600 hover:text-indigo-400">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                </div>
+                <p class="text-gray-600">contact@marlonjojo83@gmail.com</p>
             </div>
         </div>
     </div>
@@ -92,6 +92,6 @@
 
 @section('script')
 <script>
-    // Script
+    // Optional JavaScript for further customizations
 </script>
 @endsection
